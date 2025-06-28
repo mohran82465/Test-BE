@@ -99,7 +99,7 @@ exports.register = (req , res , next) => {
                     let token = jwt.sign({
                         email:email,
                         userId : success._id.toString()
-                    },"MohamedMohran" , {expiresIn:"1h"})
+                    },"MohamedYossryFaxil" , {expiresIn:"1h"})
                     res.status(201).json({
                         userId: success._id.toString(),
                         token:token
@@ -172,7 +172,7 @@ exports.changeUserStatus = (req , res , next) => {
         currentStatus = req.body.status;
 
         User.findById(userId).then(result => {
-           if(!result) {
+           if(!result) {ee
             const err = new Error("A user with this email could be not found");
             err.StatusCode = 401;
             throw err

@@ -6,7 +6,7 @@ const bodyParser = require("body-parser")
 const DBConcction = require('./util/database').DBConcction
 const multer = require('multer')
 const path = require("path")
-const cors = require("cors")
+const cors = require('cors')
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerDocument = require('./swagger.json');
@@ -41,16 +41,14 @@ const fileFilter = (req, file, cb) => {
     multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
   );
   app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use((req , res , next) => {
+  app.use(cors()); 
+  app.use((req , res , next) => {
     res.setHeader("Access-Control-Allow-Origin" , "*")
     res.setHeader("Access-Control-Allow-Methods" , "GET , POST , PUT , PATCH , DELETE")
     res.setHeader("Access-Control-Allow-Headers" , "Content-Type , Authorization") 
-    res.setHeader("Access-Control-Allow-Headers" , "Content-Type , Authorization") 
-
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next()
 })
-app.use(cors({ origin: 'http://localhost:4200', credentials: true }));
-
 app.use('/tasks' , tasksRoute)
 app.use('/auth' , authRoute)
 
