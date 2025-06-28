@@ -99,7 +99,7 @@ exports.register = (req , res , next) => {
                     let token = jwt.sign({
                         email:email,
                         userId : success._id.toString()
-                    },"MohamedYossryFaxil" , {expiresIn:"1h"})
+                    },"MohamedMohran" , {expiresIn:"1h"})
                     res.status(201).json({
                         userId: success._id.toString(),
                         token:token
